@@ -54,7 +54,7 @@ class ViewController: UIViewController, ListDisplayLogic{
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
+        fetchLists()
     }
     
     func fetchLists() {
@@ -80,8 +80,8 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") else { return UITableViewCell()}
-        cell.textLabel?.text = displayedLists[indexPath.row].name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? TableViewCell else { return UITableViewCell()}
+        cell.nameLabel.text = displayedLists[indexPath.row].name
         return cell
     }
     

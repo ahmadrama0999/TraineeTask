@@ -34,7 +34,7 @@ class ViewPresenter: ViewPresentationLogic{
     func presentFetchedList(response: List.Fetch.Response) {
         var displayedLists: [List.Fetch.ViewModel.DisplayedList] = []
         for list in response.lists {
-            let displayedList = List.Fetch.ViewModel.DisplayedList(id: list.id, name: list.name)
+            displayedLists.append(List.Fetch.ViewModel.DisplayedList(id: list.id, name: list.name))
         }
         let viewModel = List.Fetch.ViewModel(displayedList: displayedLists)
         viewController?.displayFetchedOrders(viewModel: viewModel)
