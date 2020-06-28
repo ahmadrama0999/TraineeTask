@@ -9,70 +9,62 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var tableView: UITableView!
     
-    
-    var array: [String] = ["Ramin", "Alex", "Misha", "Viktor"]
+    var entityArray: [Entity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        print("STRUCT")
-        var studentS1 = StudentStruct()
-        print("S1" ,studentS1)
-        let studentS2 = studentS1
-        print("S2",studentS2)
-        studentS1.name = "Rama"
-        print("S1",studentS1)
-        print("S2",studentS2)
-        
-        print("Class")
-        let studentC1 = StudentClass()
-        print("C1" ,studentC1.name)
-        let studentC2 = studentC1
-        print("C2" ,studentC2.name)
-        studentC1.name = "Dani"
-        print("C1",studentC1.name)
-        print("C2",studentC2.name)
-        
-        
-        
     }
     
-    @IBAction func sortCellAction(_ sender: Any) {
-        array.sort { (s1, s2) -> Bool in
-            return s1<s2
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateList()
+    }
+    
+    func updateList() {
+        EntityManager.shared.read{ entity in
+            self.entityArray = entity
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        tableView.reloadData()
     }
-}
     
+    
+    @IBAction func addEntityAction(_ sender: Any) {
+//        CarManager.shared.saveCar(title: titleTextField.text ?? "NO name",
+//                                  wasInAccident: wasInAccidentSwitch.isOn,
+//                                  productionYear: productionYearTextField.text) { _ in
+//                                    self.didSaveObject?()
+//                                    self.dismiss(animated: true)
+//                                    print("CAR IS CREATED")
+//        }
+        EntityManager.shared.create(name: "Test", age: 123) { _ in
+            print("Entity Created")
+        }
+    }
+    
+}
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return entityArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let object = entityArray[indexPath.row]
+        cell.textLabel!.text = object.name
+        cell.detailTextLabel?.text = String(object.age)
+        return cell
+    }
+    
+    
+}
 
 extension ViewController: UITableViewDelegate {
     
 }
-
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleCell") else { return UITableViewCell()}
-        cell.textLabel?.text = array[indexPath.row]
-        return cell
-    }
-    
-}
-
-struct StudentStruct {
-    var name = "Vika"
-}
-
-class StudentClass {
-    var name = "Viktor"
-}
-
