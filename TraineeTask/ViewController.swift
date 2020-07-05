@@ -8,71 +8,96 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var surnameTextField: UITextField!
+    @IBOutlet private weak var uniTextField: UITextField!
+    private let universityDataPicker = UIPickerView()
     
-    var array: [String] = ["Ramin", "Alex", "Misha", "Viktor"]
+    var arrayPicker = ["ONPU","ONMA","ONMU"]
+    var pickedUni: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        universityDataPicker.dataSource = self
+        universityDataPicker.delegate = self
         
-        print("STRUCT")
-        var studentS1 = StudentStruct()
-        print("S1" ,studentS1)
-        let studentS2 = studentS1
-        print("S2",studentS2)
-        studentS1.name = "Rama"
-        print("S1",studentS1)
-        print("S2",studentS2)
+        nameTextField.text = UserSettings.userModel?.name
+        surnameTextField.text = UserSettings.userModel?.surname
         
-        print("Class")
-        let studentC1 = StudentClass()
-        print("C1" ,studentC1.name)
-        let studentC2 = studentC1
-        print("C2" ,studentC2.name)
-        studentC1.name = "Dani"
-        print("C1",studentC1.name)
-        print("C2",studentC2.name)
+        let toolbar = UIToolbar()
+        let spacing = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let okButton = UIBarButtonItem(title: "Ok", style: .done, target: self, action: #selector(handleSelected))
+        toolbar.items = [spacing, okButton]
+        toolbar.sizeToFit()
         
-        
-        
+        uniTextField.inputView = universityDataPicker
+        uniTextField.inputAccessoryView = toolbar
     }
     
-    @IBAction func sortCellAction(_ sender: Any) {
-        array.sort { (s1, s2) -> Bool in
-            return s1<s2
-        }
-        tableView.reloadData()
-    }
-}
-    
-
-extension ViewController: UITableViewDelegate {
-    
-}
-
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleCell") else { return UITableViewCell()}
-        cell.textLabel?.text = array[indexPath.row]
-        return cell
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arrayPicker.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return arrayPicker[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickedUni = arrayPicker[row]
+    }
+    
+    @objc private func handleSelected() {
+        uniTextField.resignFirstResponder()
+        uniTextField.text = arrayPicker[universityDataPicker.selectedRow(inComponent: 0)]
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        guard let name = nameTextField.text, let surname = surnameTextField.text,let pickedUni = pickedUni, let uni = University(rawValue: pickedUni) else { return }
+        
+        let object = Student(name: name, surname: surname, uni: uni )
+        UserSettings.userModel = object
+        print("Data was saved")
     }
     
 }
 
-struct StudentStruct {
-    var name = "Vika"
+class Student: NSObject, NSCoding{
+    
+    var name: String
+    var surname: String
+    var uni: University
+    
+    init(name: String, surname: String, uni: University) {
+        self.name = name
+        self.surname = surname
+        self.uni = uni
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(name,forKey: "name")
+        coder.encode(surname,forKey: "surname")
+        coder.encode(uni.rawValue ,forKey: "uni")
+    }
+    
+    required init?(coder: NSCoder) {
+        name = coder.decodeObject(forKey: "name") as? String ?? ""
+        surname = coder.decodeObject(forKey: "surname") as? String ?? ""
+        uni = University(rawValue: (coder.decodeObject(forKey: "uni") as! String )) ?? University.ONPU
+    }
+    
 }
 
-class StudentClass {
-    var name = "Viktor"
+enum University: String {
+    case ONPU
+    case ONMA
+    case ONMU
 }
+
+
 
