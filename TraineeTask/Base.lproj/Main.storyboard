@@ -15,48 +15,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JfI-ef-ShY">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SimpleCell" textLabel="AZV-f1-cRN" style="IBUITableViewCellStyleDefault" id="5J3-GN-4pJ">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5J3-GN-4pJ" id="Ypi-R0-yJF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AZV-f1-cRN">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aSL-z6-Ob3">
+                                <rect key="frame" x="88" y="209" width="199" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hFl-Tg-HWI">
+                                <rect key="frame" x="88" y="268" width="199" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcw-sK-faB">
+                                <rect key="frame" x="133" y="490" width="108" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveAccountAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UkR-4u-mUh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JfI-ef-ShY" secondAttribute="trailing" id="93q-3N-WQ3"/>
-                            <constraint firstItem="JfI-ef-ShY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FbA-gd-2ar"/>
-                            <constraint firstItem="JfI-ef-ShY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="X6a-8k-baH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JfI-ef-ShY" secondAttribute="bottom" id="qvc-oS-wFO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hFl-Tg-HWI" secondAttribute="trailing" constant="88" id="5Ac-r4-boh"/>
+                            <constraint firstItem="aSL-z6-Ob3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="GL7-93-MYG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dcw-sK-faB" secondAttribute="bottom" constant="147" id="Gzn-W1-D7f"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aSL-z6-Ob3" secondAttribute="trailing" constant="88" id="QdH-wv-LUe"/>
+                            <constraint firstItem="dcw-sK-faB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="133" id="UNh-Oe-YmD"/>
+                            <constraint firstItem="hFl-Tg-HWI" firstAttribute="top" secondItem="aSL-z6-Ob3" secondAttribute="bottom" constant="25" id="WAv-qa-8lG"/>
+                            <constraint firstItem="hFl-Tg-HWI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="88" id="XsQ-j5-0Dr"/>
+                            <constraint firstItem="aSL-z6-Ob3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="165" id="c61-gA-wGa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dcw-sK-faB" secondAttribute="trailing" constant="134" id="qkM-JD-KlA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TVl-1R-Qef">
-                        <barButtonItem key="rightBarButtonItem" title="Sort" id="1Xt-qC-Las">
-                            <connections>
-                                <action selector="sortCellAction:" destination="BYZ-38-t0r" id="Keg-CB-zxe"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="TVl-1R-Qef"/>
                     <connections>
-                        <outlet property="tableView" destination="JfI-ef-ShY" id="L1C-B3-OLj"/>
+                        <outlet property="nameTextField" destination="aSL-z6-Ob3" id="bRG-eW-0hr"/>
+                        <outlet property="surnameTextField" destination="hFl-Tg-HWI" id="434-1e-sD1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
