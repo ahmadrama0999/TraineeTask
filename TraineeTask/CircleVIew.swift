@@ -14,7 +14,7 @@ final class CircleView: UIView {
     var circleLayer: CAShapeLayer!
     var allClouds = [UIImageView]()
     let angles = [(CGFloat.pi / 3), (CGFloat.pi / 6), 0.0, (11 * CGFloat.pi / 6), (5 * CGFloat.pi / 3), (3 * CGFloat.pi / 2),
-    (4 * CGFloat.pi / 3), (7 * CGFloat.pi / 6), (CGFloat.pi), (5 * CGFloat.pi / 6), (2 * CGFloat.pi / 3)]
+                  (4 * CGFloat.pi / 3), (7 * CGFloat.pi / 6), (CGFloat.pi), (5 * CGFloat.pi / 6), (2 * CGFloat.pi / 3)]
     
     static var circle = CircleView(frame:  CGRect(x: 90, y: 250, width: 400 , height: 400))
     
@@ -86,24 +86,24 @@ final class CircleView: UIView {
             let imageCenter = CGPoint(x: imagePoint * cos(item) + self.center.x, y: imagePoint * sin(item)  + self.center.y)
             path.move(to: inner)
             path.addLine(to: outer)
-
-//            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-//            label.center = numberCenter
-//            label.textAlignment = .center
-//            label.font = .systemFont(ofSize: 20)
-//            label.alpha = 0
-//            allLabels.append(label)
-//            label.text = "\(numbersOfClock[index])"
-//            view.addSubview(label)
-
+            
+            //            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+            //            label.center = numberCenter
+            //            label.textAlignment = .center
+            //            label.font = .systemFont(ofSize: 20)
+            //            label.alpha = 0
+            //            allLabels.append(label)
+            //            label.text = "\(numbersOfClock[index])"
+            //            view.addSubview(label)
+            
             let imageView = UIImageView(image: UIImage(named: "sun"))
             imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
             imageView.center = imageCenter
             imageView.contentMode = .scaleAspectFit
-            imageView.alpha = 0
+            imageView.alpha = 1
             allClouds.append(imageView)
             self.addSubview(imageView)
-
+            
         }
     }
     
