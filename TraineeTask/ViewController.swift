@@ -9,70 +9,27 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var startButton: UIButton!
     
-    var array: [String] = ["Ramin", "Alex", "Misha", "Viktor"]
+    private var arrayData = [WeatherResponse]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
+        CircleView.circle.center = self.view.center
+        view.addSubview(CircleView.circle)
         
-        print("STRUCT")
-        var studentS1 = StudentStruct()
-        print("S1" ,studentS1)
-        let studentS2 = studentS1
-        print("S2",studentS2)
-        studentS1.name = "Rama"
-        print("S1",studentS1)
-        print("S2",studentS2)
-        
-        print("Class")
-        let studentC1 = StudentClass()
-        print("C1" ,studentC1.name)
-        let studentC2 = studentC1
-        print("C2" ,studentC2.name)
-        studentC1.name = "Dani"
-        print("C1",studentC1.name)
-        print("C2",studentC2.name)
-        
-        
-        
+        //        let box = UIView(frame: CGRect(x: 100, y: 100, width: 20, height: 20))
+        //        box.backgroundColor = .red
+        //        view.addSubview(box)
     }
     
-    @IBAction func sortCellAction(_ sender: Any) {
-        array.sort { (s1, s2) -> Bool in
-            return s1<s2
+    @IBAction func startAction(_ sender: Any) {
+        CircleView.circle.start()
+        WeatherService().getWeather { ( response ) in
+            self.arrayData.append(response)
         }
-        tableView.reloadData()
+        print(arrayData)
+        
     }
 }
-    
-
-extension ViewController: UITableViewDelegate {
-    
-}
-
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SimpleCell") else { return UITableViewCell()}
-        cell.textLabel?.text = array[indexPath.row]
-        return cell
-    }
-    
-}
-
-struct StudentStruct {
-    var name = "Vika"
-}
-
-class StudentClass {
-    var name = "Viktor"
-}
-
