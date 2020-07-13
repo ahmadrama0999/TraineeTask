@@ -9,7 +9,7 @@
 import Foundation
 
 struct Utils {
-    static let mainURL = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID="
+    static let mainURL = "https://api.openweathermap.org/data/2.5/forecast?q=London&appid="
     static let key = "acd5988b9f5c5082e4da82d86809d60e"
 }
 
@@ -33,10 +33,10 @@ struct WeatherService {
             case 200:
                 do {
                     let responseData = try JSONDecoder().decode(WeatherResponse.self, from: data)
-//                    print(responseData)
-                    DispatchQueue.main.async {
+                    //print(responseData)
+                    //DispatchQueue.main.async {
                         completion(responseData)
-                    }
+                    //}
                     
                 } catch {
                     print(error.localizedDescription)

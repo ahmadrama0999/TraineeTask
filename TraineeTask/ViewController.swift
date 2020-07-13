@@ -18,16 +18,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         CircleView.circle.center = self.view.center
         view.addSubview(CircleView.circle)
-        
-        //        let box = UIView(frame: CGRect(x: 100, y: 100, width: 20, height: 20))
-        //        box.backgroundColor = .red
-        //        view.addSubview(box)
     }
     
     @IBAction func startAction(_ sender: Any) {
         CircleView.circle.start()
         WeatherService().getWeather { ( response ) in
+            self.arrayData.removeAll()
+//            DispatchQueue.main.async {
+//                self.arrayData.append(response)
+//            }
             self.arrayData.append(response)
+            print(self.arrayData.count)
+
         }
         print(arrayData)
         
