@@ -11,13 +11,12 @@ import UIKit
 
 final class CircleView: UIView {
     
-    var circleLayer: CAShapeLayer!
+    var circleLayer = CAShapeLayer()
     var allClouds = [UIImageView]()
     var allLabels = [UILabel]()
     let trackLayer = CAShapeLayer()
     let angles = [(CGFloat.pi / 3), (CGFloat.pi / 6), 0.0, (11 * CGFloat.pi / 6), (5 * CGFloat.pi / 3), (3 * CGFloat.pi / 2),
                   (4 * CGFloat.pi / 3), (7 * CGFloat.pi / 6), (CGFloat.pi), (5 * CGFloat.pi / 6), (2 * CGFloat.pi / 3)]
-    let numbersOfClock = [5,4,3,2,1,12,11,10,9,8,7]
     
     static var circle = CircleView(frame:  CGRect(x: 90, y: 250, width: 300 , height: 300))
     
@@ -49,62 +48,61 @@ final class CircleView: UIView {
         layer.addSublayer(circleLayer)
     }
     
+    //Animate main circle
     private func animateCircle(duration: TimeInterval) {
         // We want to animate the strokeEnd property of the circleLayer
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        
         // Set the animation duration appropriately
         animation.duration = duration
         
         // Animate from 0 (no circle) to 1 (full circle)
         animation.fromValue = 0
         animation.toValue = 1
-        animation.byValue = 0.25
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
-        //        animation.autoreverses = true
-        
-        
         // Do a linear animation (i.e. the speed of the animation stays the same)
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         
-        
         // Set the circleLayer's strokeEnd property to 1.0 now so that it's the
-        // right value when the animation ends.
         circleLayer.strokeEnd = animation.toValue as! CGFloat
         
         // Do the actual animation
-        circleLayer.add(animation, forKey: "animateCircle")
-        trackLayer.add(animation, forKey: "someBasicAnimation")
+        DispatchQueue.main.async {
+            self.circleLayer.add(animation, forKey: "animateCircle")
+            self.trackLayer.add(animation, forKey: "someBasicAnimation")
+        }
     }
     
-    private func animateImage() {
-        
-        self.backgroundColor = .yellow
+    //Animate others obj
+    private func animateImage(weatherData: Circle.Something.ViewModel) {
+        let data = weatherData
         
         let path = UIBezierPath()
         let imagePoint: CGFloat = 140
-        let innerRadius: CGFloat = 95
-        let numberPoint: CGFloat = 75
-        let outerRadius: CGFloat = 100
+        let inRadius: CGFloat = 95
+        let tempPoint: CGFloat = 70
+        let outRadius: CGFloat = 100
         for (index, item) in angles.enumerated() {
-            let inner = CGPoint(x: innerRadius * cos(item) + frame.size.width / 2.0, y: innerRadius * sin(item) + frame.size.height / 2.0)
-            let outer = CGPoint(x: outerRadius * cos(item) + frame.size.width / 2.0, y: outerRadius * sin(item)  + frame.size.height / 2.0)
-            let numberCenter = CGPoint(x: numberPoint * cos(item) + frame.size.width / 2.0, y: numberPoint * sin(item)  + frame.size.height / 2.0)
+            let inner = CGPoint(x: inRadius * cos(item) + frame.size.width / 2.0, y: inRadius * sin(item) + frame.size.height / 2.0)
+            let outer = CGPoint(x: outRadius * cos(item) + frame.size.width / 2.0, y: outRadius * sin(item)  + frame.size.height / 2.0)
+            let tempCenter = CGPoint(x: tempPoint * cos(item) + frame.size.width / 2.0, y: tempPoint * sin(item)  + frame.size.height / 2.0)
             let imageCenter = CGPoint(x: imagePoint * cos(item) + frame.size.width / 2.0, y: imagePoint * sin(item)  + frame.size.height / 2.0)
             path.move(to: inner)
             path.addLine(to: outer)
             
-            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-            label.center = numberCenter
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            label.center = tempCenter
             label.textAlignment = .center
-            label.font = .systemFont(ofSize: 16)
+            label.font = .systemFont(ofSize: 14)
             label.alpha = 0
             allLabels.append(label)
-            label.text = "\(numbersOfClock[index])"
+            
+            label.text = convertTemp(temp: data.temp[index], from: .kelvin, to: .celsius)
+            print(convertTemp(temp: data.temp[index], from: .kelvin, to: .celsius))
             self.addSubview(label)
             
-            let imageView = UIImageView(image: UIImage(named: "sun"))
+            
+            let imageView = UIImageView(image: UIImage(named: data.weatherDescription[index]))
             imageView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
             imageView.center = imageCenter
             imageView.contentMode = .scaleAspectFit
@@ -112,14 +110,17 @@ final class CircleView: UIView {
             allClouds.append(imageView)
             self.addSubview(imageView)
             
+            
+            
             let timeInterval = (3.0 / 11.0)
             var runCount = 0
+            
             Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) {[weak self] timer in
-                UIView.animate(withDuration: 0.3) {
+                UIView.animate(withDuration: 0.15) {
                     self?.allLabels[runCount].alpha = 1
                     self?.allClouds[runCount].alpha = 1
-                    
                 }
+                
                 let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.y")
                 rotation.toValue = Double.pi * 2
                 rotation.duration = 1
@@ -133,7 +134,7 @@ final class CircleView: UIView {
         }
         
         trackLayer.strokeEnd = 0
-        trackLayer.lineWidth = 10
+        trackLayer.lineWidth = 5
         trackLayer.path = path.cgPath
         trackLayer.strokeColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         trackLayer.lineCap = .square
@@ -141,12 +142,22 @@ final class CircleView: UIView {
         self.layer.addSublayer(trackLayer)
     }
     
-    func start() {
+    
+    func start(weatherResponse: Circle.Something.ViewModel) {
         circleLayer.strokeEnd = 0.0
         allClouds.forEach { $0.alpha = 0}
         allLabels.forEach { $0.alpha = 0}
         animateCircle(duration: 3)
-        animateImage()
+        animateImage(weatherData: weatherResponse )
+    }
+    
+    private func convertTemp(temp: Double, from inputTempType: UnitTemperature, to outputTempType: UnitTemperature) -> String {
+        let mf = MeasurementFormatter()
+        mf.numberFormatter.maximumFractionDigits = 0
+        mf.unitOptions = .providedUnit
+        let input = Measurement(value: temp, unit: inputTempType)
+        let output = input.converted(to: outputTempType)
+        return mf.string(from: output)
     }
     
 }

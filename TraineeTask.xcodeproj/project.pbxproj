@@ -9,20 +9,24 @@
 /* Begin PBXBuildFile section */
 		774B2908249A2B7B000635A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B2907249A2B7B000635A5 /* AppDelegate.swift */; };
 		774B290A249A2B7B000635A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B2909249A2B7B000635A5 /* SceneDelegate.swift */; };
-		774B290C249A2B7B000635A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 774B290B249A2B7B000635A5 /* ViewController.swift */; };
 		774B290F249A2B7B000635A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 774B290D249A2B7B000635A5 /* Main.storyboard */; };
 		774B2911249A2B7E000635A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 774B2910249A2B7E000635A5 /* Assets.xcassets */; };
 		774B2914249A2B7E000635A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 774B2912249A2B7E000635A5 /* LaunchScreen.storyboard */; };
 		77F3A19624B70F2C009D677A /* CircleVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19524B70F2C009D677A /* CircleVIew.swift */; };
 		77F3A19824B71F1D009D677A /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19724B71F1D009D677A /* WeatherService.swift */; };
 		77F3A19A24B72743009D677A /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19924B72743009D677A /* WeatherResponse.swift */; };
+		77F3A1A124BC75B8009D677A /* CirclePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19B24BC75B8009D677A /* CirclePresenter.swift */; };
+		77F3A1A224BC75B8009D677A /* CircleWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19C24BC75B8009D677A /* CircleWorker.swift */; };
+		77F3A1A324BC75B8009D677A /* CircleRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19D24BC75B8009D677A /* CircleRouter.swift */; };
+		77F3A1A424BC75B8009D677A /* CircleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19E24BC75B8009D677A /* CircleModels.swift */; };
+		77F3A1A524BC75B8009D677A /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19F24BC75B8009D677A /* CircleViewController.swift */; };
+		77F3A1A624BC75B8009D677A /* CircleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1A024BC75B8009D677A /* CircleInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		774B2904249A2B7B000635A5 /* TraineeTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TraineeTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		774B2907249A2B7B000635A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		774B2909249A2B7B000635A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		774B290B249A2B7B000635A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		774B290E249A2B7B000635A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		774B2910249A2B7E000635A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		774B2913249A2B7E000635A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,6 +34,12 @@
 		77F3A19524B70F2C009D677A /* CircleVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleVIew.swift; sourceTree = "<group>"; };
 		77F3A19724B71F1D009D677A /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		77F3A19924B72743009D677A /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		77F3A19B24BC75B8009D677A /* CirclePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePresenter.swift; sourceTree = "<group>"; };
+		77F3A19C24BC75B8009D677A /* CircleWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleWorker.swift; sourceTree = "<group>"; };
+		77F3A19D24BC75B8009D677A /* CircleRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleRouter.swift; sourceTree = "<group>"; };
+		77F3A19E24BC75B8009D677A /* CircleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleModels.swift; sourceTree = "<group>"; };
+		77F3A19F24BC75B8009D677A /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
+		77F3A1A024BC75B8009D677A /* CircleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,16 +74,29 @@
 			children = (
 				774B2907249A2B7B000635A5 /* AppDelegate.swift */,
 				774B2909249A2B7B000635A5 /* SceneDelegate.swift */,
-				774B290B249A2B7B000635A5 /* ViewController.swift */,
-				77F3A19924B72743009D677A /* WeatherResponse.swift */,
-				77F3A19724B71F1D009D677A /* WeatherService.swift */,
-				77F3A19524B70F2C009D677A /* CircleVIew.swift */,
+				77F3A1A724BC75C1009D677A /* Scene */,
 				774B290D249A2B7B000635A5 /* Main.storyboard */,
 				774B2910249A2B7E000635A5 /* Assets.xcassets */,
 				774B2912249A2B7E000635A5 /* LaunchScreen.storyboard */,
 				774B2915249A2B7E000635A5 /* Info.plist */,
 			);
 			path = TraineeTask;
+			sourceTree = "<group>";
+		};
+		77F3A1A724BC75C1009D677A /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				77F3A19524B70F2C009D677A /* CircleVIew.swift */,
+				77F3A19724B71F1D009D677A /* WeatherService.swift */,
+				77F3A19924B72743009D677A /* WeatherResponse.swift */,
+				77F3A19B24BC75B8009D677A /* CirclePresenter.swift */,
+				77F3A19C24BC75B8009D677A /* CircleWorker.swift */,
+				77F3A19D24BC75B8009D677A /* CircleRouter.swift */,
+				77F3A19E24BC75B8009D677A /* CircleModels.swift */,
+				77F3A19F24BC75B8009D677A /* CircleViewController.swift */,
+				77F3A1A024BC75B8009D677A /* CircleInteractor.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,11 +171,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				77F3A19824B71F1D009D677A /* WeatherService.swift in Sources */,
+				77F3A1A524BC75B8009D677A /* CircleViewController.swift in Sources */,
+				77F3A1A624BC75B8009D677A /* CircleInteractor.swift in Sources */,
+				77F3A1A224BC75B8009D677A /* CircleWorker.swift in Sources */,
+				77F3A1A124BC75B8009D677A /* CirclePresenter.swift in Sources */,
 				77F3A19A24B72743009D677A /* WeatherResponse.swift in Sources */,
 				77F3A19624B70F2C009D677A /* CircleVIew.swift in Sources */,
-				774B290C249A2B7B000635A5 /* ViewController.swift in Sources */,
 				774B2908249A2B7B000635A5 /* AppDelegate.swift in Sources */,
+				77F3A1A324BC75B8009D677A /* CircleRouter.swift in Sources */,
 				774B290A249A2B7B000635A5 /* SceneDelegate.swift in Sources */,
+				77F3A1A424BC75B8009D677A /* CircleModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

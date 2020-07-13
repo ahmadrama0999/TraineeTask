@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Circle View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TraineeTask" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CircleViewController" customModule="TraineeTask" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,20 +19,37 @@
                                 <rect key="frame" x="164.5" y="577" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="startAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DqM-Ko-BtR"/>
+                                    <action selector="tapButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvs-5C-MeF"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAq-RA-vRX">
+                                <rect key="frame" x="172" y="72" width="31" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t5m-qP-CY9" userLabel="City">
+                                <rect key="frame" x="139" y="30" width="97" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="hbK-ze-4bm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3qk-rv-pN0"/>
+                            <constraint firstItem="t5m-qP-CY9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="CjG-Dv-bra"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="t5m-qP-CY9" secondAttribute="trailing" constant="139" id="JlS-PG-DCL"/>
+                            <constraint firstItem="yAq-RA-vRX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Uc4-UE-206"/>
+                            <constraint firstItem="t5m-qP-CY9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="139" id="Xod-jR-lAZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hbK-ze-4bm" secondAttribute="bottom" constant="60" id="lST-tQ-OfH"/>
+                            <constraint firstItem="yAq-RA-vRX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="72" id="ljo-wm-SXM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="TVl-1R-Qef"/>
                     <connections>
-                        <outlet property="startButton" destination="hbK-ze-4bm" id="H4Z-Sz-vlX"/>
+                        <outlet property="cityLabel" destination="yAq-RA-vRX" id="4m9-CA-dJ2"/>
+                        <outlet property="cityTF" destination="t5m-qP-CY9" id="OvD-dA-zqF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
