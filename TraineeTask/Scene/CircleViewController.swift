@@ -89,7 +89,8 @@ class CircleViewController: UIViewController, CircleDisplayLogic
     
     func displayWeather(viewModel: Circle.Something.ViewModel) {
         DispatchQueue.main.async {
-        CircleView.circle.start(weatherResponse: viewModel)
+            self.reloadInputViews()
+            CircleView.circle.start(weatherResponse: viewModel)
         }
     }
     

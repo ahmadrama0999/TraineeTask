@@ -24,11 +24,14 @@ class CirclePresenter: CirclePresentationLogic
   
   func presentSomething(response: Circle.Something.Response)
   {
-    
     let list = Array(response.weatherData[0].list.prefix(11))
     var temp = [Double]()
     var description = [String]()
-    list.forEach { (item) in
+//    list.forEach { (item) in
+//        temp.append(item.main.temp)
+//        description.append(item.weather[0].main.rawValue)
+//    }
+    for item in list {
         temp.append(item.main.temp)
         description.append(item.weather[0].main.rawValue)
     }

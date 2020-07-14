@@ -68,15 +68,16 @@ final class CircleView: UIView {
         
         // Do the actual animation
         DispatchQueue.main.async {
-            self.circleLayer.add(animation, forKey: "animateCircle")
-            self.trackLayer.add(animation, forKey: "someBasicAnimation")
+            CircleView.circle.circleLayer.add(animation, forKey: "animateCircle")
+            CircleView.circle.trackLayer.add(animation, forKey: "someBasicAnimation")
         }
     }
     
     //Animate others obj
     private func animateImage(weatherData: Circle.Something.ViewModel) {
+        allLabels.removeAll()
+        allClouds.removeAll()
         let data = weatherData
-        
         let path = UIBezierPath()
         let imagePoint: CGFloat = 140
         let inRadius: CGFloat = 95
@@ -98,8 +99,9 @@ final class CircleView: UIView {
             allLabels.append(label)
             
             label.text = convertTemp(temp: data.temp[index], from: .kelvin, to: .celsius)
+            print(data.cityName)
             print(convertTemp(temp: data.temp[index], from: .kelvin, to: .celsius))
-            self.addSubview(label)
+            CircleView.circle.addSubview(label)
             
             
             let imageView = UIImageView(image: UIImage(named: data.weatherDescription[index]))
@@ -108,7 +110,7 @@ final class CircleView: UIView {
             imageView.contentMode = .scaleAspectFit
             imageView.alpha = 0
             allClouds.append(imageView)
-            self.addSubview(imageView)
+            CircleView.circle.addSubview(imageView)
             
             
             
@@ -120,7 +122,6 @@ final class CircleView: UIView {
                     self?.allLabels[runCount].alpha = 1
                     self?.allClouds[runCount].alpha = 1
                 }
-                
                 let rotation: CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.y")
                 rotation.toValue = Double.pi * 2
                 rotation.duration = 1
@@ -130,7 +131,6 @@ final class CircleView: UIView {
                     timer.invalidate()
                 }
             }
-            
         }
         
         trackLayer.strokeEnd = 0
@@ -139,7 +139,7 @@ final class CircleView: UIView {
         trackLayer.strokeColor = CGColor(srgbRed: 0, green: 0, blue: 0, alpha: 1)
         trackLayer.lineCap = .square
         trackLayer.fillColor = UIColor.clear.cgColor
-        self.layer.addSublayer(trackLayer)
+        CircleView.circle.layer.addSublayer(trackLayer)
     }
     
     

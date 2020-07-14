@@ -41,7 +41,5 @@ class CircleInteractor: CircleBusinessLogic, CircleDataStore
         let response = Circle.Something.Response(weatherData: self.arrayData)
         self.presenter?.presentSomething(response: response)
     }
-//    let response = Circle.Something.Response(weatherData: arrayData)
-//    presenter?.presentSomething(response: response)
   }
 }
