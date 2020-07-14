@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum PointPosition {
+    static let imagePoint: CGFloat = 140
+    static let inRadius: CGFloat = 95
+    static let tempPoint: CGFloat = 70
+    static let outRadius: CGFloat = 100
+}
 
 final class CircleView: UIView {
     
@@ -61,15 +67,11 @@ final class CircleView: UIView {
         allClouds.removeAll()
         let data = weatherData
         let path = UIBezierPath()
-        let imagePoint: CGFloat = 140
-        let inRadius: CGFloat = 95
-        let tempPoint: CGFloat = 70
-        let outRadius: CGFloat = 100
         for (index, item) in angles.enumerated() {
-            let inner = CGPoint(x: inRadius * cos(item) + frame.size.width / 2.0, y: inRadius * sin(item) + frame.size.height / 2.0)
-            let outer = CGPoint(x: outRadius * cos(item) + frame.size.width / 2.0, y: outRadius * sin(item)  + frame.size.height / 2.0)
-            let tempCenter = CGPoint(x: tempPoint * cos(item) + frame.size.width / 2.0, y: tempPoint * sin(item)  + frame.size.height / 2.0)
-            let imageCenter = CGPoint(x: imagePoint * cos(item) + frame.size.width / 2.0, y: imagePoint * sin(item)  + frame.size.height / 2.0)
+            let inner = CGPoint(x: PointPosition.inRadius * cos(item) + frame.size.width / 2.0, y: PointPosition.inRadius * sin(item) + frame.size.height / 2.0)
+            let outer = CGPoint(x: PointPosition.outRadius * cos(item) + frame.size.width / 2.0, y: PointPosition.outRadius * sin(item)  + frame.size.height / 2.0)
+            let tempCenter = CGPoint(x: PointPosition.tempPoint * cos(item) + frame.size.width / 2.0, y: PointPosition.tempPoint * sin(item)  + frame.size.height / 2.0)
+            let imageCenter = CGPoint(x: PointPosition.imagePoint * cos(item) + frame.size.width / 2.0, y: PointPosition.imagePoint * sin(item)  + frame.size.height / 2.0)
             path.move(to: inner)
             path.addLine(to: outer)
             

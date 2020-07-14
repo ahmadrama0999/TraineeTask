@@ -20,7 +20,6 @@ protocol CircleDisplayLogic: class
 class CircleViewController: UIViewController, CircleDisplayLogic
 {
     @IBOutlet weak var cityLabel: UILabel!
-    @IBOutlet weak var cityTF: UITextField!
     var interactor: CircleBusinessLogic?
     var router: (NSObjectProtocol & CircleRoutingLogic & CircleDataPassing)?
     
@@ -75,14 +74,14 @@ class CircleViewController: UIViewController, CircleDisplayLogic
             CircleView.circle.center = self.view.center
             self.view.addSubview(CircleView.circle)
         }
+        fetchData()
     }
     
     // MARK: Do something
     
     
     func fetchData() {
-        guard let cityName = cityTF.text else { return }
-        let request = Circle.Something.Request(cityName: cityName)
+        let request = Circle.Something.Request()
         interactor?.sendRequest(request: request)
     }
     
@@ -91,10 +90,8 @@ class CircleViewController: UIViewController, CircleDisplayLogic
         DispatchQueue.main.async {
             self.reloadInputViews()
             CircleView.circle.start(weatherResponse: viewModel)
+            self.cityLabel.text = viewModel.cityName
         }
     }
     
-    @IBAction func tapButtonAction(_ sender: Any) {
-        fetchData()
-    }
 }

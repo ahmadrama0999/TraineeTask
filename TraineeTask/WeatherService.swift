@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Utils {
+enum Utils {
     static let mainURL = "https://api.openweathermap.org/data/2.5/forecast?q="
     static let key = "&appid=acd5988b9f5c5082e4da82d86809d60e"
 }

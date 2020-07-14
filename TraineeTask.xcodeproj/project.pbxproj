@@ -21,6 +21,12 @@
 		77F3A1A424BC75B8009D677A /* CircleModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19E24BC75B8009D677A /* CircleModels.swift */; };
 		77F3A1A524BC75B8009D677A /* CircleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A19F24BC75B8009D677A /* CircleViewController.swift */; };
 		77F3A1A624BC75B8009D677A /* CircleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1A024BC75B8009D677A /* CircleInteractor.swift */; };
+		77F3A1B124BDB735009D677A /* CityTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1AB24BDB735009D677A /* CityTablePresenter.swift */; };
+		77F3A1B224BDB735009D677A /* CityTableWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1AC24BDB735009D677A /* CityTableWorker.swift */; };
+		77F3A1B324BDB735009D677A /* CityTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1AD24BDB735009D677A /* CityTableRouter.swift */; };
+		77F3A1B424BDB735009D677A /* CityTableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1AE24BDB735009D677A /* CityTableModels.swift */; };
+		77F3A1B524BDB735009D677A /* CityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1AF24BDB735009D677A /* CityTableViewController.swift */; };
+		77F3A1B624BDB735009D677A /* CityTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A1B024BDB735009D677A /* CityTableInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +46,12 @@
 		77F3A19E24BC75B8009D677A /* CircleModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleModels.swift; sourceTree = "<group>"; };
 		77F3A19F24BC75B8009D677A /* CircleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewController.swift; sourceTree = "<group>"; };
 		77F3A1A024BC75B8009D677A /* CircleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleInteractor.swift; sourceTree = "<group>"; };
+		77F3A1AB24BDB735009D677A /* CityTablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTablePresenter.swift; sourceTree = "<group>"; };
+		77F3A1AC24BDB735009D677A /* CityTableWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableWorker.swift; sourceTree = "<group>"; };
+		77F3A1AD24BDB735009D677A /* CityTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableRouter.swift; sourceTree = "<group>"; };
+		77F3A1AE24BDB735009D677A /* CityTableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableModels.swift; sourceTree = "<group>"; };
+		77F3A1AF24BDB735009D677A /* CityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewController.swift; sourceTree = "<group>"; };
+		77F3A1B024BDB735009D677A /* CityTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +101,7 @@
 		77F3A1A724BC75C1009D677A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				77F3A1AA24BDB163009D677A /* CityTableView */,
+				77F3A1AA24BDB163009D677A /* CityTable */,
 				77F3A1A824BDB109009D677A /* СircleWeatherAnimation */,
 			);
 			path = Scene;
@@ -116,11 +128,17 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
-		77F3A1AA24BDB163009D677A /* CityTableView */ = {
+		77F3A1AA24BDB163009D677A /* CityTable */ = {
 			isa = PBXGroup;
 			children = (
+				77F3A1AB24BDB735009D677A /* CityTablePresenter.swift */,
+				77F3A1AC24BDB735009D677A /* CityTableWorker.swift */,
+				77F3A1AD24BDB735009D677A /* CityTableRouter.swift */,
+				77F3A1AE24BDB735009D677A /* CityTableModels.swift */,
+				77F3A1AF24BDB735009D677A /* CityTableViewController.swift */,
+				77F3A1B024BDB735009D677A /* CityTableInteractor.swift */,
 			);
-			path = CityTableView;
+			path = CityTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,14 +212,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77F3A1B324BDB735009D677A /* CityTableRouter.swift in Sources */,
 				77F3A19824B71F1D009D677A /* WeatherService.swift in Sources */,
 				77F3A1A524BC75B8009D677A /* CircleViewController.swift in Sources */,
+				77F3A1B424BDB735009D677A /* CityTableModels.swift in Sources */,
 				77F3A1A624BC75B8009D677A /* CircleInteractor.swift in Sources */,
 				77F3A1A224BC75B8009D677A /* CircleWorker.swift in Sources */,
 				77F3A1A124BC75B8009D677A /* CirclePresenter.swift in Sources */,
 				77F3A19A24B72743009D677A /* WeatherResponse.swift in Sources */,
+				77F3A1B624BDB735009D677A /* CityTableInteractor.swift in Sources */,
+				77F3A1B524BDB735009D677A /* CityTableViewController.swift in Sources */,
 				77F3A19624B70F2C009D677A /* CircleVIew.swift in Sources */,
 				774B2908249A2B7B000635A5 /* AppDelegate.swift in Sources */,
+				77F3A1B224BDB735009D677A /* CityTableWorker.swift in Sources */,
+				77F3A1B124BDB735009D677A /* CityTablePresenter.swift in Sources */,
 				77F3A1A324BC75B8009D677A /* CircleRouter.swift in Sources */,
 				774B290A249A2B7B000635A5 /* SceneDelegate.swift in Sources */,
 				77F3A1A424BC75B8009D677A /* CircleModels.swift in Sources */,

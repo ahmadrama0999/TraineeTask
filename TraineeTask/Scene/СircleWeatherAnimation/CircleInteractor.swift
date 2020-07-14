@@ -14,32 +14,33 @@ import UIKit
 
 protocol CircleBusinessLogic
 {
-  func sendRequest(request: Circle.Something.Request)
+    func sendRequest(request: Circle.Something.Request)
 }
 
 protocol CircleDataStore
 {
-  //var name: String { get set }
+    var name: String! { get set }
 }
 
 class CircleInteractor: CircleBusinessLogic, CircleDataStore
 {
-  var presenter: CirclePresentationLogic?
-  var worker: CircleWorker?
-  private var arrayData = [WeatherResponse]()
-  
-  // MARK: Do something
-  
-  func sendRequest(request: Circle.Something.Request)
-  {
-    worker = CircleWorker()
-    worker?.doSomeWork()
+    var name: String!
+    var presenter: CirclePresentationLogic?
+    var worker: CircleWorker?
+    private var arrayData = [WeatherResponse]()
     
-    WeatherService().getWeather(cityName: request.cityName){ ( response ) in
-        self.arrayData.removeAll()
-        self.arrayData.append(response)
-        let response = Circle.Something.Response(weatherData: self.arrayData)
-        self.presenter?.presentSomething(response: response)
+    // MARK: Do something
+    
+    func sendRequest(request: Circle.Something.Request)
+    {
+        worker = CircleWorker()
+        worker?.doSomeWork()
+        guard let name = name else { return }
+        WeatherService().getWeather(cityName: name){ ( response ) in
+            self.arrayData.removeAll()
+            self.arrayData.append(response)
+            let response = Circle.Something.Response(weatherData: self.arrayData)
+            self.presenter?.presentSomething(response: response)
+        }
     }
-  }
 }

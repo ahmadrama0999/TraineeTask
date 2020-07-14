@@ -16,16 +16,12 @@ enum Circle
 {
     enum Something
     {
-        struct Request
-        {
-            var cityName: String
+        struct Request{
         }
-        struct Response
-        {
+        struct Response{
             var weatherData: [WeatherResponse]
         }
-        struct ViewModel
-        {
+        struct ViewModel {
                 var cityName: String
                 var temp: [Double]
                 var weatherDescription: [String]
