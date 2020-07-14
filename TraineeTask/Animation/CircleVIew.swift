@@ -28,52 +28,34 @@ final class CircleView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         
-        // Use UIBezierPath as an easy way to create the CGPath for the layer.
-        // The path should be the entire circle.
-        
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: frame.size.width / 2.0, y: frame.size.height / 2.0), radius: (frame.size.width - 10)/3,startAngle: CGFloat.pi/3, endAngle: 2 * CGFloat.pi / 3, clockwise: false)
-        
-        
-        // Setup the CAShapeLayer with the path, colors, and line width
         circleLayer = CAShapeLayer()
         circleLayer.path = circlePath.cgPath
         circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.strokeColor = UIColor.systemGray.cgColor
         circleLayer.lineWidth = 10.0;
-        
-        // Don't draw the circle initially
         circleLayer.strokeEnd = 0.0
-        
-        // Add the circleLayer to the view's layer's sublayers
         layer.addSublayer(circleLayer)
     }
     
-    //Animate main circle
     private func animateCircle(duration: TimeInterval) {
-        // We want to animate the strokeEnd property of the circleLayer
         let animation = CABasicAnimation(keyPath: "strokeEnd")
-        // Set the animation duration appropriately
         animation.duration = duration
         
-        // Animate from 0 (no circle) to 1 (full circle)
         animation.fromValue = 0
         animation.toValue = 1
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
-        // Do a linear animation (i.e. the speed of the animation stays the same)
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         
-        // Set the circleLayer's strokeEnd property to 1.0 now so that it's the
         circleLayer.strokeEnd = animation.toValue as! CGFloat
-        
-        // Do the actual animation
+
         DispatchQueue.main.async {
             CircleView.circle.circleLayer.add(animation, forKey: "animateCircle")
             CircleView.circle.trackLayer.add(animation, forKey: "someBasicAnimation")
         }
     }
     
-    //Animate others obj
     private func animateImage(weatherData: Circle.Something.ViewModel) {
         allLabels.removeAll()
         allClouds.removeAll()

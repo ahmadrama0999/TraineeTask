@@ -72,6 +72,7 @@
 		774B2906249A2B7B000635A5 /* TraineeTask */ = {
 			isa = PBXGroup;
 			children = (
+				77F3A1A924BDB137009D677A /* Animation */,
 				774B2907249A2B7B000635A5 /* AppDelegate.swift */,
 				774B2909249A2B7B000635A5 /* SceneDelegate.swift */,
 				77F3A19724B71F1D009D677A /* WeatherService.swift */,
@@ -88,7 +89,15 @@
 		77F3A1A724BC75C1009D677A /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				77F3A19524B70F2C009D677A /* CircleVIew.swift */,
+				77F3A1AA24BDB163009D677A /* CityTableView */,
+				77F3A1A824BDB109009D677A /* СircleWeatherAnimation */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		77F3A1A824BDB109009D677A /* СircleWeatherAnimation */ = {
+			isa = PBXGroup;
+			children = (
 				77F3A19B24BC75B8009D677A /* CirclePresenter.swift */,
 				77F3A19C24BC75B8009D677A /* CircleWorker.swift */,
 				77F3A19D24BC75B8009D677A /* CircleRouter.swift */,
@@ -96,7 +105,22 @@
 				77F3A19F24BC75B8009D677A /* CircleViewController.swift */,
 				77F3A1A024BC75B8009D677A /* CircleInteractor.swift */,
 			);
-			path = Scene;
+			path = "СircleWeatherAnimation";
+			sourceTree = "<group>";
+		};
+		77F3A1A924BDB137009D677A /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				77F3A19524B70F2C009D677A /* CircleVIew.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		77F3A1AA24BDB163009D677A /* CityTableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CityTableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

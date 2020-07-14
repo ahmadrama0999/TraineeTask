@@ -33,11 +33,7 @@ struct WeatherService {
             case 200:
                 do {
                     let responseData = try JSONDecoder().decode(WeatherResponse.self, from: data)
-//                    print(responseData)
-                    //DispatchQueue.main.async {
                     completion(responseData)
-                    //}
-                    
                 } catch {
                     print(error.localizedDescription)
                 }
