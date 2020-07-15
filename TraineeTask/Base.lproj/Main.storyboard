@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eJn-wk-zfI">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="567"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityCell" textLabel="ecD-gT-NUd" rowHeight="62" style="IBUITableViewCellStyleDefault" id="Gfo-dD-rDp">
@@ -41,18 +41,30 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="EIo-r1-Pq0">
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Opr-4f-epp" id="BiT-q6-a63"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="EIo-r1-Pq0" firstAttribute="top" secondItem="FkR-4I-2my" secondAttribute="top" id="2D6-Ub-uGW"/>
+                            <constraint firstItem="EIo-r1-Pq0" firstAttribute="leading" secondItem="FkR-4I-2my" secondAttribute="leading" id="5Y9-sJ-Eup"/>
                             <constraint firstItem="FkR-4I-2my" firstAttribute="bottom" secondItem="eJn-wk-zfI" secondAttribute="bottom" id="5gy-pU-vBB"/>
-                            <constraint firstItem="eJn-wk-zfI" firstAttribute="top" secondItem="FkR-4I-2my" secondAttribute="top" id="jCy-IC-4eK"/>
+                            <constraint firstItem="eJn-wk-zfI" firstAttribute="top" secondItem="EIo-r1-Pq0" secondAttribute="bottom" id="7Tq-MY-wSd"/>
+                            <constraint firstItem="EIo-r1-Pq0" firstAttribute="trailing" secondItem="FkR-4I-2my" secondAttribute="trailing" id="aHz-3A-FBo"/>
                             <constraint firstItem="FkR-4I-2my" firstAttribute="trailing" secondItem="eJn-wk-zfI" secondAttribute="trailing" id="qUU-oe-TeQ"/>
                             <constraint firstItem="eJn-wk-zfI" firstAttribute="leading" secondItem="FkR-4I-2my" secondAttribute="leading" id="vkA-ak-Vj6"/>
+                            <constraint firstItem="eJn-wk-zfI" firstAttribute="top" secondItem="EIo-r1-Pq0" secondAttribute="bottom" id="xBc-Az-685"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FkR-4I-2my"/>
                     </view>
                     <navigationItem key="navigationItem" title="CityList" id="JDK-mF-WtE"/>
                     <connections>
+                        <outlet property="searchTableBar" destination="EIo-r1-Pq0" id="6sm-3K-v9n"/>
                         <outlet property="tableView" destination="eJn-wk-zfI" id="9ca-OX-NuP"/>
                     </connections>
                 </viewController>

@@ -18,11 +18,12 @@ protocol CityTableDisplayLogic: class {
 
 class CityTableViewController: UIViewController, CityTableDisplayLogic {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchTableBar: UISearchBar!
     
     var interactor: CityTableBusinessLogic?
     var router: (NSObjectProtocol & CityTableRoutingLogic & CityTableDataPassing)?
+    var displCities = [CityTable.CityList.ViewModel.City]()
     
-    var cities = [CityTable.CityList.ViewModel.City]()
     
     // MARK: Object lifecycle
     
@@ -79,28 +80,27 @@ class CityTableViewController: UIViewController, CityTableDisplayLogic {
     
     // MARK: Do something
     
-    //@IBOutlet weak var nameTextField: UITextField!
-    
     func sendRequest() {
         let request = CityTable.CityList.Request()
-        interactor?.doSomething(request: request)
+        interactor?.fetchData(request: request)
     }
     
     func displayTableCityList(viewModel: CityTable.CityList.ViewModel) {
-        cities = viewModel.list
+        displCities = viewModel.list
         tableView.reloadData()
     }
+    
 }
 
 
 extension CityTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cities.count
+        return displCities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityCell") else { return UITableViewCell() }
-        cell.textLabel?.text = cities[indexPath.row].name
+        cell.textLabel?.text = displCities[indexPath.row].name
         return cell
     }
     
@@ -114,4 +114,12 @@ extension CityTableViewController: UITableViewDataSource {
 
 extension CityTableViewController: UITableViewDelegate {
     
+}
+
+extension CityTableViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        interactor?.fetchFiltereData(searchName: searchText)
+        tableView.reloadData()
+    }
 }

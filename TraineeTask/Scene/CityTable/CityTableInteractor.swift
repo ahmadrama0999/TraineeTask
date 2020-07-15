@@ -14,7 +14,8 @@ import UIKit
 
 protocol CityTableBusinessLogic
 {
-    func doSomething(request: CityTable.CityList.Request)
+    func fetchData(request: CityTable.CityList.Request)
+     func fetchFiltereData(searchName: String)
 }
 
 protocol CityTableDataStore
@@ -30,11 +31,22 @@ class CityTableInteractor: CityTableBusinessLogic, CityTableDataStore
     
     // MARK: Do something
     
-    func doSomething(request: CityTable.CityList.Request) {
+    func fetchData(request: CityTable.CityList.Request) {
         worker = CityTableWorker()
         cities = worker?.fetchCities()
         guard let list = cities else { return }
         let response = CityTable.CityList.Response(cities: list)
         presenter?.presentSomething(response: response)
+    }
+    
+    func fetchFiltereData(searchName: String) {
+        var dispCities = [String]()
+        guard let list = cities else { return }
+        if searchName == "" {
+            dispCities = list
+        } else {
+            dispCities = list.filter { $0.range(of: searchName, options: .caseInsensitive) != nil }
+        }
+        presenter?.presentSomething(response: CityTable.CityList.Response(cities: dispCities))
     }
 }
