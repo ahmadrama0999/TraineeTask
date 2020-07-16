@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H6R-w3-1g3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="80u-7o-fre">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -103,6 +103,46 @@
             </objects>
             <point key="canvasLocation" x="2016.8" y="137.18140929535232"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="DPR-0b-6QF">
+            <objects>
+                <viewController id="80u-7o-fre" customClass="LoginViewController" customModule="TraineeTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qu3-dk-UJh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Flw-cN-wwq">
+                                <rect key="frame" x="162" y="60" width="51" height="30"/>
+                                <state key="normal" title="LogOut"/>
+                                <connections>
+                                    <action selector="logOutButton:" destination="80u-7o-fre" eventType="touchUpInside" id="ZFX-Jw-zYc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prh-Qk-Fms">
+                                <rect key="frame" x="165" y="110" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="prh-Qk-Fms" firstAttribute="centerX" secondItem="Qu3-dk-UJh" secondAttribute="centerX" id="DMQ-xq-7AN"/>
+                            <constraint firstItem="prh-Qk-Fms" firstAttribute="top" secondItem="Flw-cN-wwq" secondAttribute="bottom" constant="20" id="JZf-iM-jSD"/>
+                            <constraint firstItem="Flw-cN-wwq" firstAttribute="leading" secondItem="YCL-qi-0Pt" secondAttribute="leading" constant="162" id="Oh9-7f-dFG"/>
+                            <constraint firstItem="Flw-cN-wwq" firstAttribute="top" secondItem="YCL-qi-0Pt" secondAttribute="top" constant="60" id="bLG-Lp-vmo"/>
+                            <constraint firstItem="YCL-qi-0Pt" firstAttribute="trailing" secondItem="Flw-cN-wwq" secondAttribute="trailing" constant="162" id="gNH-QL-fHR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YCL-qi-0Pt"/>
+                    </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="prh-Qk-Fms" id="C00-jD-kaU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b61-5i-OGo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-855" y="137"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="GpD-3v-qlV">
             <objects>
@@ -119,7 +159,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEh-hR-44y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="136.28185907046478"/>
+            <point key="canvasLocation" x="282" y="137"/>
         </scene>
     </scenes>
 </document>
