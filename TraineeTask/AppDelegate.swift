@@ -32,6 +32,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    var bgSessionCompletionHandler: (() -> Void)?
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        bgSessionCompletionHandler = completionHandler
+    }
 
 }
 
