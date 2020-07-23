@@ -15,7 +15,16 @@ import UIKit
 class CityTableWorker
 {
     func fetchCities() -> [String] {
-        return ["Odessa","Kiev","Kharkov","Lyon","Angers","Marseille","Bordeaux","Rome","Milan","Bali",
-                "Berlin","Drezden","Milan","Kabul","Vienna","Sofia","Plovdiv"]
+        return CoreDataService.shared.readData()
   }
+    
+    func sendCityToDataBase(name: String) {
+        CoreDataService.shared.createData(cityName: name)
+    }
+    
+    func deleteAllData() {
+        CoreDataService.shared.deleteAll()
+    }
+    
+    
 }

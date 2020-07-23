@@ -12,13 +12,20 @@
 
 import UIKit
 
+enum Options {
+    case delete
+    case add
+    case read
+}
+
 enum CityTable
 {
   // MARK: Use cases
-  
   enum CityList
   {
     struct Request{
+        let option: Options
+        let name: String
     }
     struct Response{
         let cities: [String]

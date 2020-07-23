@@ -75,19 +75,54 @@ class CityTableViewController: UIViewController, CityTableDisplayLogic {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        sendRequest()
+        sendRequest(option: .read, name: "")
     }
     
-    // MARK: Do something
+    // MARK: All request for interactor
     
-    func sendRequest() {
-        let request = CityTable.CityList.Request()
+    //    func sendInitialRequest() {
+    //        let request = CityTable.CityList.Request(option: .read, name: "")
+    //        interactor?.fetchData(request: request)
+    //    }
+    
+    func sendRequest(option: Options, name: String) {
+        let request = CityTable.CityList.Request(option: option, name: name)
         interactor?.fetchData(request: request)
     }
     
     func displayTableCityList(viewModel: CityTable.CityList.ViewModel) {
         displCities = viewModel.list
         tableView.reloadData()
+    }
+    
+    
+    @IBAction func addButton(_ sender: Any) {
+        showAlertWithTextField()
+    }
+    
+    
+    private func showAlertWithTextField() {
+        let alertController = UIAlertController(title: "Add new city", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Add", style: .default) { (_) in
+            if let txtField = alertController.textFields?.first, let text = txtField.text {
+                //                self.displCities.append(CityTable.CityList.ViewModel.City.init(name: text))
+                //                self.tableView.reloadData()
+                self.sendRequest(option: .add, name: text)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Tag"
+        }
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
+    @IBAction func deleteAllAction(_ sender: Any) {
+        sendRequest(option: .delete, name: "")
     }
     
 }

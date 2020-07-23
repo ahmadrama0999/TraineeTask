@@ -14,24 +14,24 @@ import UIKit
 
 protocol CirclePresentationLogic
 {
-  func presentSomething(response: Circle.Something.Response)
+    func presentSomething(response: Circle.Something.Response)
 }
 
 class CirclePresenter: CirclePresentationLogic
 {
-  weak var viewController: CircleDisplayLogic?
-  
-  
-  func presentSomething(response: Circle.Something.Response)
-  {
-    let list = Array(response.weatherData[0].list.prefix(11))
-    var temp = [Double]()
-    var description = [String]()
-    for item in list {
-        temp.append(item.main.temp)
-        description.append(item.weather[0].main.rawValue)
+    weak var viewController: CircleDisplayLogic?
+    
+    
+    func presentSomething(response: Circle.Something.Response)
+    {
+        let list = Array(response.weatherData[0].list.prefix(11))
+        var temp = [Double]()
+        var description = [String]()
+        for item in list {
+            temp.append(item.main.temp)
+            description.append(item.weather[0].main.rawValue)
+        }
+        let viewModel = Circle.Something.ViewModel(cityName: response.weatherData[0].city.name, temp: temp, weatherDescription: description)
+        viewController?.displayWeather(viewModel: viewModel)
     }
-    let viewModel = Circle.Something.ViewModel(cityName: response.weatherData[0].city.name, temp: temp, weatherDescription: description)
-    viewController?.displayWeather(viewModel: viewModel)
-  }
 }

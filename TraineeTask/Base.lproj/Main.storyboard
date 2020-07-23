@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H6R-w3-1g3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H6R-w3-1g3">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -62,7 +62,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FkR-4I-2my"/>
                     </view>
-                    <navigationItem key="navigationItem" title="CityList" id="JDK-mF-WtE"/>
+                    <navigationItem key="navigationItem" title="CityList" id="JDK-mF-WtE">
+                        <barButtonItem key="leftBarButtonItem" title="DeleteAll" id="JSA-O1-db1">
+                            <connections>
+                                <action selector="deleteAllAction:" destination="Opr-4f-epp" id="dMJ-3S-iwO"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="3dK-ij-2Ay">
+                            <connections>
+                                <action selector="addButton:" destination="Opr-4f-epp" id="oY2-TD-gfH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchTableBar" destination="EIo-r1-Pq0" id="6sm-3K-v9n"/>
                         <outlet property="tableView" destination="eJn-wk-zfI" id="9ca-OX-NuP"/>
@@ -122,4 +133,7 @@
             <point key="canvasLocation" x="204" y="136.28185907046478"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+    </resources>
 </document>

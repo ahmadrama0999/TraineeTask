@@ -15,7 +15,8 @@ import UIKit
 protocol CityTableBusinessLogic
 {
     func fetchData(request: CityTable.CityList.Request)
-     func fetchFiltereData(searchName: String)
+    func fetchFiltereData(searchName: String)
+    //    func addData(request: CityTable.CityList.Request)
 }
 
 protocol CityTableDataStore
@@ -25,6 +26,7 @@ protocol CityTableDataStore
 
 class CityTableInteractor: CityTableBusinessLogic, CityTableDataStore
 {
+    
     var cities: [String]?
     var presenter: CityTablePresentationLogic?
     var worker: CityTableWorker?
@@ -33,6 +35,16 @@ class CityTableInteractor: CityTableBusinessLogic, CityTableDataStore
     
     func fetchData(request: CityTable.CityList.Request) {
         worker = CityTableWorker()
+        switch request.option {
+        case .add:
+            worker?.sendCityToDataBase(name: request.name)
+            break
+        case .delete:
+            worker?.deleteAllData()
+            break
+        case .read:
+            break
+        }
         cities = worker?.fetchCities()
         guard let list = cities else { return }
         let response = CityTable.CityList.Response(cities: list)

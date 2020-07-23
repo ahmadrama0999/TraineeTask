@@ -22,9 +22,9 @@ enum Circle
             var weatherData: [WeatherResponse]
         }
         struct ViewModel {
-                var cityName: String
-                var temp: [Double]
-                var weatherDescription: [String]
+            var cityName: String
+            var temp: [Double]
+            var weatherDescription: [String]
             
         }
     }
