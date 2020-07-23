@@ -50,12 +50,25 @@ struct CoreDataService {
         }
     }
     
-    //    func deleteData() {
-    //        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-    //        let managedContext = appDelegate.persistentContainer.viewContext
-    //        let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: "CityEntity")
-    //        fetchRequest.predicate = NSPredicate(
-    //    }
+    func deleteData(name:String) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>( entityName: "CityEntity")
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        do {
+            let data = try managedContext.fetch(fetchRequest)
+            guard let object = data.first as? NSManagedObject else { return }
+            managedContext.delete(object)
+            do {
+                 try managedContext.save()
+            } catch {
+                fatalError("Cant save DB")
+            }
+        } catch {
+            fatalError("Error when try to delete one object")
+        }
+        
+    }
     
     func deleteAll() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return}

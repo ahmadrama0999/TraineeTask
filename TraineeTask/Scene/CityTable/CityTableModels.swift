@@ -13,9 +13,10 @@
 import UIKit
 
 enum Options {
-    case delete
+    case deleteAll
     case add
     case read
+    case delete
 }
 
 enum CityTable

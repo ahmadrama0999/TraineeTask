@@ -39,11 +39,13 @@ class CityTableInteractor: CityTableBusinessLogic, CityTableDataStore
         case .add:
             worker?.sendCityToDataBase(name: request.name)
             break
-        case .delete:
+        case .deleteAll:
             worker?.deleteAllData()
             break
         case .read:
             break
+        case .delete:
+            worker?.deleteCertainObject(name: request.name)
         }
         cities = worker?.fetchCities()
         guard let list = cities else { return }

@@ -26,5 +26,9 @@ class CityTableWorker
         CoreDataService.shared.deleteAll()
     }
     
+    func deleteCertainObject(name: String) {
+        CoreDataService.shared.deleteData(name: name)
+    }
+    
     
 }

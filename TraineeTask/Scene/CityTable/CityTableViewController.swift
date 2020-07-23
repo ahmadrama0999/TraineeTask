@@ -80,11 +80,6 @@ class CityTableViewController: UIViewController, CityTableDisplayLogic {
     
     // MARK: All request for interactor
     
-    //    func sendInitialRequest() {
-    //        let request = CityTable.CityList.Request(option: .read, name: "")
-    //        interactor?.fetchData(request: request)
-    //    }
-    
     func sendRequest(option: Options, name: String) {
         let request = CityTable.CityList.Request(option: option, name: name)
         interactor?.fetchData(request: request)
@@ -105,14 +100,12 @@ class CityTableViewController: UIViewController, CityTableDisplayLogic {
         let alertController = UIAlertController(title: "Add new city", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Add", style: .default) { (_) in
             if let txtField = alertController.textFields?.first, let text = txtField.text {
-                //                self.displCities.append(CityTable.CityList.ViewModel.City.init(name: text))
-                //                self.tableView.reloadData()
                 self.sendRequest(option: .add, name: text)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
         alertController.addTextField { (textField) in
-            textField.placeholder = "Tag"
+            textField.placeholder = "City name"
         }
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
@@ -122,7 +115,7 @@ class CityTableViewController: UIViewController, CityTableDisplayLogic {
     
     
     @IBAction func deleteAllAction(_ sender: Any) {
-        sendRequest(option: .delete, name: "")
+        sendRequest(option: .deleteAll, name: "")
     }
     
 }
@@ -143,6 +136,15 @@ extension CityTableViewController: UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            sendRequest(option: .delete, name: displCities[indexPath.row].name)
+        }
+    }
     
     
 }
